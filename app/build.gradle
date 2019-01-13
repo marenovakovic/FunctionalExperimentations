@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.marko.functionalexperimentations"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //Arrow
+    implementation "io.arrow-kt:arrow-typeclasses:$arrowVersion"
+    implementation "io.arrow-kt:arrow-core:$arrowVersion"
+    implementation "io.arrow-kt:arrow-syntax:$arrowVersion"
+    implementation "io.arrow-kt:arrow-typeclasses:$arrowVersion"
+    implementation "io.arrow-kt:arrow-data:$arrowVersion"
+    implementation "io.arrow-kt:arrow-instances-core:$arrowVersion"
+    implementation "io.arrow-kt:arrow-instances-data:$arrowVersion"
+    implementation "io.arrow-kt:arrow-free:$arrowVersion"
+    implementation "io.arrow-kt:arrow-instances-free:$arrowVersion"
+    implementation "io.arrow-kt:arrow-effects:$arrowVersion"
+    implementation "io.arrow-kt:arrow-effects-instances:$arrowVersion"
+    implementation "io.arrow-kt:arrow-effects-kotlinx-coroutines:$arrowVersion"
+    implementation "io.arrow-kt:arrow-effects-kotlinx-coroutines-instances:$arrowVersion"
+    implementation "io.arrow-kt:arrow-optics:$arrowVersion"
+    implementation "io.arrow-kt:arrow-generic:$arrowVersion"
+
+    // AppCompat
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerCompilerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerAndroidProcessorVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+
+    // KTX
+    implementation "androidx.core:core-ktx:$ktxVersion"
+
+    //    implementation "androidx.fragment:fragment-ktx:$ktxVersion"
+
+    // Legacy Support
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
+
+    // Material
+    implementation "com.google.android.material:material:$materialVersion"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingInterceptorVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutineAdapterVersion"
+    implementation "io.arrow-kt:arrow-integration-retrofit-adapter:$arrowVersion"
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+
+    // Testing
+    testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
+    testImplementation "junit:junit:$jUnitVersion"
+//    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlinTestVersion"
+//    testImplementation "io.kotlintest:kotlintest-assertions-arrow:$kotlinTestVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$jUnit5Version"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test:rules:$testRulesVersion"
+
+    // Assertions
+    androidTestImplementation "androidx.test.ext:junit:$testExtVersion"
+    androidTestImplementation "androidx.test.ext:truth:$testExtVersion"
+    androidTestImplementation "com.google.truth:truth:$googleTruthVersion"
+
+    // Core library
+    androidTestImplementation "androidx.test:core:$testCoreVersion"
+
+    // Dagger
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerCompilerVersion"
+
+    // Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+}
