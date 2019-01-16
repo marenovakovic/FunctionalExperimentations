@@ -1,27 +1,28 @@
 package com.marko.functionalexperimentations.base
 
 import androidx.lifecycle.ViewModel
-import com.marko.functionalexperimentations.dispatchers.CoroutineDispatchers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlin.coroutines.CoroutineContext
+import arrow.core.Either
+import arrow.effects.DeferredK
+import arrow.effects.unsafeRunAsync
+import kotlinx.coroutines.*
 
-abstract class BaseViewModel(
-	private val dispatchers: CoroutineDispatchers
-) : ViewModel(), CoroutineScope {
+private val exceptionHandler = CoroutineExceptionHandler { context, t ->
+	t.printStackTrace()
+}
 
-	private var job = Job()
+abstract class BaseViewModel : ViewModel(), CoroutineScope by MainScope() + exceptionHandler {
 
-	override val coroutineContext: CoroutineContext
-		get() = dispatchers.io + job
+	private val jobs = mutableListOf<Job>()
 
-	protected fun runJob(job: Job) {
-		this.job = job
+	fun <A> DeferredK<A>.runJob(callback: (Either<Throwable, A>) -> Unit) {
+		jobs.add(this)
+		unsafeRunAsync { callback(it) }
 	}
 
 	override fun onCleared() {
 		super.onCleared()
 
-		job.cancel()
+		jobs.forEach { it.cancel() }
+		cancel()
 	}
 }

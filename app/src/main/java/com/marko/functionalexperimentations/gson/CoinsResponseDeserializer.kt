@@ -14,28 +14,25 @@ object CoinsResponseDeserializer : JsonDeserializer<CoinsResponse> {
 		json: JsonElement,
 		typeOfT: Type,
 		context: JsonDeserializationContext
-	): CoinsResponse {
-		val data = json.asJsonObject.getAsJsonArray("data")
-
-		val coins = data.map {
-			it.asJsonObject.run {
-				Coin(
-					id = get("id").asInt,
-					name = get("name").asString,
-					symbol = get("symbol").asString
+	): CoinsResponse = json.run {
+		CoinsResponse(
+			coins = asJsonObject.getAsJsonArray("data").map {
+				it.asJsonObject.run {
+					Coin(
+						id = get("id").asInt,
+						name = get("name").asString,
+						symbol = get("symbol").asString
+					)
+				}
+			},
+			status = asJsonObject.getAsJsonObject("status").run {
+				CoinStatus(
+					timestamp = get("timestamp").asString,
+					errorCode = get("error_code").asInt,
+					elapsed = get("elapsed").asInt,
+					creditCount = get("credit_count").asInt
 				)
 			}
-		}
-
-		val statusJson = json.asJsonObject.getAsJsonObject("status")
-
-		val status = CoinStatus(
-			timestamp = statusJson["timestamp"].asString,
-			errorCode = statusJson["error_code"].asInt,
-			elapsed = statusJson["elapsed"].asInt,
-			creditCount = statusJson["credit_count"].asInt
 		)
-
-		return CoinsResponse(coins = coins, status = status)
 	}
 }

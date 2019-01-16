@@ -1,11 +1,6 @@
 package com.marko.functionalexperimentations.app
 
 import android.content.Context
-import arrow.effects.DeferredK
-import arrow.effects.ForDeferredK
-import arrow.effects.deferredk.async.async
-import arrow.effects.typeclasses.Async
-import com.marko.functionalexperimentations.data.CoinsRepository
 import com.marko.functionalexperimentations.data.CoinsService
 import com.marko.functionalexperimentations.data.coinsService
 import com.marko.functionalexperimentations.dispatchers.CoroutineDispatchers
@@ -29,8 +24,4 @@ class AppModule(private val context: Context) {
 
 	@Provides
 	fun coinsService(): CoinsService = coinsService
-
-	@Provides
-	fun coinsRepository(): CoinsRepository<ForDeferredK> =
-		object : CoinsRepository<ForDeferredK>, Async<ForDeferredK> by DeferredK.async() {}
 }

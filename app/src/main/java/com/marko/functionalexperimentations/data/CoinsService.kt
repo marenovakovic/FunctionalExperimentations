@@ -3,12 +3,11 @@ package com.marko.functionalexperimentations.data
 import arrow.integrations.retrofit.adapter.CallK
 import arrow.integrations.retrofit.adapter.CallKindAdapterFactory
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.marko.functionalexperimentations.entities.CoinId
 import com.marko.functionalexperimentations.entities.CoinResponse
 import com.marko.functionalexperimentations.entities.CoinsResponse
+import com.marko.functionalexperimentations.gson.CoinResponseDeserializer
 import com.marko.functionalexperimentations.gson.CoinsResponseDeserializer
-import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,7 +26,7 @@ interface CoinsService {
 	fun getCoinDetails(
 		@Query("CMC_PRO_API_KEY") apiKey: String = API_KEY,
 		@Query("id") coinId: CoinId
-	): Deferred<CoinResponse>
+	): CallK<CoinResponse>
 }
 
 private const val READ_TIMEOUT = 15L
@@ -41,7 +40,10 @@ private val okHttpClient = OkHttpClient.Builder()
 
 private val gson =
 	GsonBuilder()
-		.apply { registerTypeAdapter(CoinsResponse::class.java, CoinsResponseDeserializer) }
+		.apply {
+			registerTypeAdapter(CoinsResponse::class.java, CoinsResponseDeserializer)
+			registerTypeAdapter(CoinResponse::class.java, CoinResponseDeserializer)
+		}
 		.create()
 
 private val retrofit = Retrofit.Builder()

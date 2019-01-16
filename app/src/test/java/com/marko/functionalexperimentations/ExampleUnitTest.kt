@@ -1,26 +1,19 @@
 package com.marko.functionalexperimentations
 
-import kotlinx.coroutines.*
 import org.junit.Test
 
 class ExampleUnitTest {
 
 	@Test
-	fun nothing() = runBlocking {
-		var a = A()
-		println(a.hashCode())
-
-		val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined + Job())
-
-		val value = scope.async { a.hashCode() }
-
-		println(value.await())
-
-		a = A()
-		println(a.hashCode())
-
-		println(value.await())
+	fun nothing() {
+		val c = Class(name = "Marko", username = "Marko")
+		println(c)
+		val c2  = c.copy(username = "Najveci car na svetu")
+		println(c2)
 	}
 
-	class A
+	data class Class(
+		val name: String,
+		val username: String
+	)
 }

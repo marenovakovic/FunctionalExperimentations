@@ -38,6 +38,7 @@ dependencies {
     implementation "io.arrow-kt:arrow-effects-kotlinx-coroutines-instances:$arrowVersion"
     implementation "io.arrow-kt:arrow-optics:$arrowVersion"
     implementation "io.arrow-kt:arrow-generic:$arrowVersion"
+    implementation "io.arrow-kt:arrow-optics:$arrowVersion"
 
     // AppCompat
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
@@ -58,6 +59,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion"
+//    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationVersion"
 
     // KTX
     implementation "androidx.core:core-ktx:$ktxVersion"

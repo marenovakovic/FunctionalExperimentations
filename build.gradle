@@ -29,7 +29,7 @@ buildscript {
         jUnitVersion = '4.12'
         jUnit5Version = '5.3.1'
         kotlinVersion = '1.3.11'
-        kotlinCoroutinesVersion = '1.0.0'
+        kotlinCoroutinesVersion = '1.1.0'
         kotlinxSerializationVersion = '0.9.1'
         ktxVersion = '1.0.1'
         kotlinTestVersion = '3.1.11'
@@ -55,10 +55,12 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "https://kotlin.bintray.com/kotlin-dev" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -72,6 +74,9 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlinx-serialization'
