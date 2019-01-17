@@ -17,7 +17,10 @@ class MainActivity : BaseActivity() {
 		setContentView(R.layout.activity_main)
 
 		viewModel.fetch()
-		viewModel.coins.observe(this, Observer { println(it); viewModel.fetchDetails() })
+		viewModel.coins.observe(this, Observer {
+			println(it)
+			viewModel.fetchDetails()
+		})
 		viewModel.error.observe(this, Observer { it.printStackTrace() })
 	}
 }

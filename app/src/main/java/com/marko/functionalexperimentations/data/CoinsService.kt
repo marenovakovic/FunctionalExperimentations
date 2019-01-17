@@ -15,7 +15,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-private const val API_KEY = "4312a484-4097-4991-8f28-f02e77bca15b"
+private const val API_KEY = "API_KEY"
 
 interface CoinsService {
 

@@ -7,6 +7,7 @@ import com.marko.functionalexperimentations.entities.CoinId
 import com.marko.functionalexperimentations.extensions.coinsException
 
 interface CoinsRemoteSource<F> : Async<F> {
+
 	val coinsService: CoinsService
 
 	fun fetchCoins(): Kind<F, List<Coin>> =

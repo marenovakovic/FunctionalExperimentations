@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class HomeModule {
+abstract class HomeBindingModule {
 
 	@Binds
 	@IntoMap
@@ -18,4 +18,10 @@ abstract class HomeModule {
 
 	@Binds
 	abstract fun factory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+}
+
+@Module(includes = [HomeBindingModule::class])
+class HomeModule {
+
+
 }
